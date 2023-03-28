@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwitterPilot</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/088d239643.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <section>
+        <nav class="menu">
+            <div class="logo">
+                <a href="index.html">TwitterPilot</a>
+            </div>
+            
+                <ul class="navlinks">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+            
+        </nav>
+    </section>
+    
+    <section>
+        <div class="main-content">
+            <div class="sidebar">
+                <ul>
+                    <li><a href="">Follow Accounts</a></li>
+                    <li><a href="">Unfollow Accounts</a></li>
+                    <li><a href="">Delete Tweets</a></li>
+                    <li><a href="" class="dropdown" onclick="myFunction()">Terms & Conditions</a>
+                        <div id="policy" class="dropdown-content">
+                            <a href="#" class="drop">Policy</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="search-bar">
+                <p>TwitterPilot helps you to automatically follow, unfollow <br> multiple users organically 
+                    deletes tweets within <br> time/date range</p>
+                <input type="text" name="search" id="" placeholder="Search for username">
+                <a href="#" class="go">Go</a>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <p>&copy 2023 TwitterPilot by Team Kingsley and Goodness</p>
+        <p><i class="fa-solid fa-paper-plane"></i>info@twitterpilot.com</p>
+            
+                <div class="social-icons">
+                    <a href="https://facebook.com/odimkingsley1"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://linkedin.com/in/odimkingsley"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://instagram.com/okekings1"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com/odimkingsley1"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/okekingscodes"><i class="fa-brands fa-github"></i></a>
+                </div>
+    </footer>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("policy");
+                if (x.className.indexOf("drop") == -1) {
+                    x.className += "drop";
+                } else {
+                    x.className = x.className.replace("drop", "");
+                }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+}
+body {
+    background: #09c092;
+}
+
+section {
+    margin: 50px 150px;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo a {
+    font-size: 28px;
+    text-decoration: none;
+}
+nav .logo a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+
+.navlinks {
+    position: absolute;
+    right: 0;
+    margin-right: 150px;
+    display: flex;
+}
+
+ul li {
+    display: flex;
+    list-style: none;
+}
+.navlinks a {
+    text-decoration: none;
+    padding: 15px;
+}
+.navlinks a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+
+/*--------------Main Content ---------------------*/
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+.sidebar {
+    background: #fff;
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+.sidebar ul li a {
+    padding: 5px 20px;
+    color: #09c092;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 15px auto;
+}
+.sidebar ul li a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+}
+
+.dropdown-content a {
+    color: #09c092;
+    text-decoration: none;
+    display: block;
+}
+
+.search-bar input {
+    background: #fff;
+    border: none;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 25px;
+    color: #000;
+    font-size: 24px;
+    width: 800px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    outline: none;
+}
+.search-bar p {
+    text-align: center;
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+
+.search-bar .go {
+    position: absolute;
+    left: 1150px;
+    padding: 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+.search-bar .go:hover {
+   background: #000;
+   transition: 0.5s ease-out;
+}
+
+.search-bar a {
+    text-decoration: none;
+    background: #09c092;
+    font-size: 28px;
+    font-weight: 40px;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background: #000;
+    padding: 15px;  
+    width: 100%;  
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+footer p {
+    font-size: 16px;
+    text-align: center;
+    
+}
