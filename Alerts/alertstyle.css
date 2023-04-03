@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+.alert {
+    max-width: 350px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 4px;
+    margin: 10px;
+    font-size: 20px;
+}
+button {
+    margin: 25px 45px;
+    background: #058fec;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+span {
+    margin-right: 15px;
+}
+.yes {
+    left: 0;
+}
