@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+}
+body {
+    background: #1D9BF0;
+}
+
+section {
+    margin: 50px 200px;
+}
+.action-section {
+    margin: 50px 300px;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo a {
+    font-size: 28px;
+    text-decoration: none;
+}
+nav .logo a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+
+.navlinks {
+    position: absolute;
+    right: 0;
+    margin-right: 150px;
+    display: flex;
+}
+
+ul li {
+    display: flex;
+    list-style: none;
+}
+.navlinks a {
+    text-decoration: none;
+    padding: 15px;
+}
+.navlinks a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+
+
+.profile {
+    display: flex;
+    justify-content: space-around; 
+    padding: 10px;
+    margin: 15px 50px;
+    background: #000;
+}
+.profile-image {
+    background: #000;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: cover;
+}
+.followers {
+    cursor: pointer;
+}
+.following {
+    cursor: pointer;
+}
+.tweets {
+    cursor: pointer;
+}
+.all-followers {
+    display: flex;
+    justify-content: space-evenly;
+}
+.follower {
+    display: block;
+    margin-left: -25%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+.follower a {
+    display: block;
+    text-decoration: none;
+    font-size: 25px;
+}
+.follower p {
+    margin-top: 15px;
+    font-size: 18px;
+}
+.follow-btn {
+    margin-right: -25%;
+    margin-top: 5%;
+}
+.f-btn {
+    color: #1D9BF0;
+    font-weight: 400;
+    padding: 5px 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+.f-btn:hover {
+    color: #fff;
+    background: #000;
+}
+.load-more {
+    color: #1D9BF0;
+    padding: 8px 10px;
+    font-size: 18px;
+    margin: 15px 35%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+
+}
