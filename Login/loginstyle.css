@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+}
+body {
+    background: #1D9BF0;
+}
+
+section {
+    margin: 50px 150px;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo a {
+    font-size: 28px;
+    text-decoration: none;
+}
+nav .logo a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+
+.navlinks {
+    position: absolute;
+    right: 0;
+    margin-right: 150px;
+    display: flex;
+}
+
+ul li {
+    display: flex;
+    list-style: none;
+}
+.navlinks a {
+    text-decoration: none;
+    padding: 15px;
+}
+.navlinks a:hover {
+    color: #000;
+    transition: 0.5s ease-out;
+}
+h2 {
+    font-size: 30px;
+    text-align: center;
+    color: #1D9BF0;
+}
+.login-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+}
+.login-form {
+    background: #f2f2f2;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+
+}
+.login-form input {
+    display: block;
+    margin: 35px 20px;
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+
+}
+input {
+    padding: 10px;
+    color: #191919;
+    outline: none;
+    border-radius: 10px;
+    font-size: 22px;
+}
+.login-btn {
+    background: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 35%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+.login-btn a {
+    color: #1D9BF0;
+    text-decoration: none;
+}
+.login-btn:hover {
+    transition: 0.5s ease-out;
+}
+label {
+    font-size: 14px;
+    color: #000;
+    display: flex;
+}
+.checkbox {
+    display: flex;
+    padding: 5px;
+    margin: 5px;
+}
