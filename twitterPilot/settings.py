@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-b_q8=$1rpj45g&h8dkvd9&ajrg=s54qze*2qx9wrb7*&1jp#yz'
+SECRET_KEY = 'django-insecure-b_q8=$1rpj45g&h8dkvd9&ajrg=s54qze*2qx9wrb7*&1jp#yz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core.apps.CoreConfig'
+    'core.apps.CoreConfig',
+    'allauth',
+    'allauth.account',
+    "django.contrib.sites",
 ]
 
 MIDDLEWARE = [
@@ -100,7 +103,36 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'twitter': {
+        'SCOPE': [
+            'email',
+            'public_profile',
+            'read_insights',
+            'manage_pages',
+            'pages_show_list',
+            'pages_manage_cta',
+            'pages_manage_instant_articles',
+            'pages_manage_engagement',
+            'pages_manage_metadata',
+            'pages_manage_posts',
+            'pages_messaging',
+            'pages_read_engagement',
+            'pages_read_user_content',
+            'pages_manage_ads',
+            'pages_manage_jobs',
+            'pages_manage_leads',
+        ],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'METHOD': 'oauth1',
+        'LOCALE_FUNC': lambda request: 'en_US',
+    }
+}
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 

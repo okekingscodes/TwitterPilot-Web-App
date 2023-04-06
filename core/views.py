@@ -12,6 +12,8 @@ from .authorization import create_update_user_from_twitter, check_token_still_va
 from .twitter_api import TwitterAPI
 
 
+
+
 # Create your views here.
 def twitter_login(request):
     twitter_api = TwitterAPI()
