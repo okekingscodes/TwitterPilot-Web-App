@@ -1,79 +1,96 @@
-from django.shortcuts import render
+import tweepy
+from rest_framework import status
+from django.shortcuts import redirect
+from rest_framework.views import Response
+from rest_framework.views import APIView
+from django.urls import reverse
+from rest_framework.permissions import IsAuthenticated
+from . import utils
+from .models import TwitterProfile
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
-# Create your views here.
-
-from django.contrib import messages
-from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .decorators import twitter_login_required
-from .models import TwitterAuthToken, TwitterUser
-from .authorization import create_update_user_from_twitter, check_token_still_valid
-from .twitter_api import TwitterAPI
-
-
-
-
-# Create your views here.
-def twitter_login(request):
-    twitter_api = TwitterAPI()
-    url, oauth_token, oauth_token_secret = twitter_api.twitter_login()
-    if url is None or url == '':
-        messages.add_message(request, messages.ERROR, 'Unable to login. Please try again.')
-        return render(request, 'authorization/error_page.html')
-    else:
-        twitter_auth_token = TwitterAuthToken.objects.filter(oauth_token=oauth_token).first()
-        if twitter_auth_token is None:
-            twitter_auth_token = TwitterAuthToken(oauth_token=oauth_token, oauth_token_secret=oauth_token_secret)
-            twitter_auth_token.save()
-        else:
-            twitter_auth_token.oauth_token_secret = oauth_token_secret
-            twitter_auth_token.save()
-        return redirect(url)
+def create_tweepy_client(access_token, access_token_secret):
+    auth = tweepy.OAuth1UserHandler(utils.API_KEY, utils.API_KEY_SECRET, access_token, access_token_secret)
+    return tweepy.API(auth)
 
 
-def twitter_callback(request):
-    if 'denied' in request.GET:
-        messages.add_message(request, messages.ERROR, 'Unable to login or login canceled. Please try again.')
-        return render(request, 'authorization/error_page.html')
-    twitter_api = TwitterAPI()
-    oauth_verifier = request.GET.get('oauth_verifier')
-    oauth_token = request.GET.get('oauth_token')
-    twitter_auth_token = TwitterAuthToken.objects.filter(oauth_token=oauth_token).first()
-    if twitter_auth_token is not None:
-        access_token, access_token_secret = twitter_api.twitter_callback(oauth_verifier, oauth_token, twitter_auth_token.oauth_token_secret)
-        if access_token is not None and access_token_secret is not None:
-            twitter_auth_token.oauth_token = access_token
-            twitter_auth_token.oauth_token_secret = access_token_secret
-            twitter_auth_token.save()
-            # Create user
-            info = twitter_api.get_me(access_token, access_token_secret)
-            if info is not None:
-                twitter_user_new = TwitterUser(twitter_id=info[0]['id'], screen_name=info[0]['username'],
-                                               name=info[0]['name'], profile_image_url=info[0]['profile_image_url'])
-                twitter_user_new.twitter_oauth_token = twitter_auth_token
-                user, twitter_user = create_update_user_from_twitter(twitter_user_new)
-                if user is not None:
-                    login(request, user)
-                    return redirect('index')
-            else:
-                messages.add_message(request, messages.ERROR, 'Unable to get profile details. Please try again.')
-                return render(request, 'authorization/error_page.html')
-        else:
-            messages.add_message(request, messages.ERROR, 'Unable to get access token. Please try again.')
-            return render(request, 'authorization/error_page.html')
-    else:
-        messages.add_message(request, messages.ERROR, 'Unable to retrieve access token. Please try again.')
-        return render(request, 'authorization/error_page.html')
+class TwitterAPIView(APIView):
+    def get(self, request):
+        auth = tweepy.OAuth1UserHandler(utils.API_KEY, utils.API_KEY_SECRET)
+        
+
+        try:
+            redirect_url = auth.get_authorization_url()
+
+            #  redirect_url, request_token, request_token_secret = auth.get_authorization_url(redirect_url=redirect_url)
+        except tweepy.TweepyException as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        request.session['request_token'] = auth.request_token['oauth_token']
+        request.session['request_token_secret'] = auth.request_token['oauth_token_secret']
+
+        return redirect(redirect_url)
+
+    def post(self, request):
+        verifier = request.query_params.get('oauth_verifier')
+
+        auth = tweepy.OAuth1UserHandler(utils.API_KEY, utils.API_KEY_SECRET, 
+                                        request.session['request_token'], 
+                                        request.session['request_token_secret'])
+
+        try:
+            auth.get_access_token(verifier)
+        except tweepy.TweepyException as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        access_token = auth.access_token
+        access_token_secret = auth.access_token_secret
+
+        # Save the user's access tokens to the database or another persistent storage mechanism
+        # Get the user associated with the request
+        user = request.user
+
+        # Create or update the user's TwitterProfile with the access tokens
+        twitter_profile, created = TwitterProfile.objects.get_or_create(user=user)
+        twitter_profile.save_tokens(access_token, access_token_secret)
 
 
-@login_required
-@twitter_login_required
-def index(request):
-    return render(request, 'authorization/home.html')
+        return ( Response({'access_token': access_token, 'access_token_secret': access_token_secret}))
+        
+        
+        
+class UserTweetsAPIView(APIView):
+    #authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request, username):
+        user = User.objects.get(username=username)
+        twitter_profile = user.twitterprofile
 
-@login_required
-def twitter_logout(request):
-    logout(request)
-    return redirect('index')
+        auth = tweepy.OAuth1UserHandler(
+            utils.API_KEY, utils.API_KEY_SECRET,
+            twitter_profile.access_token, twitter_profile.access_token_secret
+        )
+
+        api = tweepy.API(auth)
+
+        try:
+            tweets = api.user_timeline(screen_name=username, count=100)
+            
+        except tweepy.error.TweepError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        serialized_tweets = [serialize_tweet(tweet) for tweet in tweets]
+
+        return Response(serialized_tweets)
+
+def serialize_tweet(tweet):
+    return {
+        'id': tweet.id_str,
+        'text': tweet.text,
+        'created_at': tweet.created_at,
+        'favorite_count': tweet.favorite_count,
+        'retweet_count': tweet.retweet_count,
+    }
+
