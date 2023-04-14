@@ -8,49 +8,8 @@
 }
 body {
     background: #1D9BF0;
+    min-height: 100vh;
 }
-
-section {
-    margin: 50px 200px;
-}
-.action-section {
-    margin: 50px 300px;
-}
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-nav .logo a {
-    font-size: 28px;
-    text-decoration: none;
-}
-nav .logo a:hover {
-    color: #000;
-    transition: 0.5s ease-out;
-}
-
-.navlinks {
-    position: absolute;
-    right: 0;
-    margin-right: 150px;
-    display: flex;
-}
-
-ul li {
-    display: flex;
-    list-style: none;
-}
-.navlinks a {
-    text-decoration: none;
-    padding: 15px;
-}
-.navlinks a:hover {
-    color: #000;
-    transition: 0.5s ease-out;
-}
-
 
 .profile {
     display: flex;
@@ -127,4 +86,74 @@ ul li {
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
 
+}
+
+.column-contents {
+    display: flex;
+    margin: auto 50px;
+}
+
+.sidebar {
+    width: 310px;
+    background: lightgray;
+    height: 400px;
+    margin-right: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+.sidebar ul li {
+    margin: 20px 10px;
+    list-style: none;    
+
+}
+.sidebar ul li a {
+    text-decoration: none;
+    color: #0c0c0c;
+}
+.fa-solid {
+    font-size: 30px;
+    margin: 8px;
+}
+.contents {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+
+/*--------------Media Query------------------*/
+@media screen and (max-width:1024px) {
+    .profile {
+        padding: 5px;
+        margin: 10px 20px;
+    }
+    .profile-image {
+        background: #000;
+        border-radius: 50%;
+        border: 1px solid #fff;
+    }
+    .profile-image img {
+        width: 80px;
+        height: 80px;
+    }
+    .follower a {
+        display: block;
+        text-decoration: none;
+        font-size: 22px;
+    }
+    .follower p {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+    .sidebar {
+        width: 70px;
+        height: 300px;
+        margin-right: 50px;
+    }
+    .sidebar ul li a {
+        display: none;
+    }
+    .fa-solid {
+        font-size: 22px;
+        margin: 2px;
+    }
 }

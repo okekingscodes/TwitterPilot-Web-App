@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Profile</title>
     <link rel="stylesheet" href="accountstyle.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://kit.fontawesome.com/088d239643.js" crossorigin="anonymous"></script>
+    <script type="module" src="../main.js"></script>
+
 </head>
 <body>
+    <my-header></my-header>
     <section class="account-section">
         <div class="profile">
             <div class="profile-image">
@@ -27,119 +32,71 @@
             </div>
         </div>
     </section>
-
-    <section class="action-section">
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
+    
+    <section class="column-contents">
+        <aside class="sidebar">
+            <ul>
+                <li><i class="fa-solid fa-user-plus fa-lg" onclick="followUsers()"></i><a href="">Follow Users</a></li>
+                <li><i class="fa-solid fa-person-circle-question fa-lg" onclick="unfollowUsers()"></i><a href="">Unfollow Users</a></li>
+                <li><i class="fa-solid fa-heart-crack fa-lg" onclick="deleteTweets()"></i><a href="">Delete Tweets</a></li>
+                <li><i class="fa-solid fa-handshake fa-lg" onclick="showTerms()"></i><a href="">Terms &amp; Conditions</a></li>
+            </ul>
+        </aside>
+        <main class="contents">
+            <div class="all-followers">
+                <div class="follower">
+                    <a href="">Odim Kingsley</a>
+                    <a href="">okekings</a>
+                    <p>Software Engineer</p>
+                </div>
+                <div class="follow-btn">
+                    <button type="button" class="f-btn">Follow</button>
+                </div>
             </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
+            <div class="all-followers">
+                <div class="follower">
+                    <a href="">Odim Kingsley</a>
+                    <a href="">okekings</a>
+                    <p>Software Engineer</p>
+                </div>
+                <div class="follow-btn">
+                    <button type="button" class="f-btn">Follow</button>
+                </div>
             </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
+            <div class="all-followers">
+                <div class="follower">
+                    <a href="">Odim Kingsley</a>
+                    <a href="">okekings</a>
+                    <p>Software Engineer</p>
+                </div>
+                <div class="follow-btn">
+                    <button type="button" class="f-btn">Follow</button>
+                </div>
             </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
+            <div class="all-followers">
+                <div class="follower">
+                    <a href="">Odim Kingsley</a>
+                    <a href="">okekings</a>
+                    <p>Software Engineer</p>
+                </div>
+                <div class="follow-btn">
+                    <button type="button" class="f-btn">Follow</button>
+                </div>
             </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
+            <div class="all-followers">
+                <div class="follower">
+                    <a href="">Odim Kingsley</a>
+                    <a href="">okekings</a>
+                    <p>Software Engineer</p>
+                </div>
+                <div class="follow-btn">
+                    <button type="button" class="f-btn">Follow</button>
+                </div>
             </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <div class="all-followers">
-            <div class="follower">
-                <a href="">Odim Kingsley</a>
-                <a href="">okekings</a>
-                <p>Software Engineer</p>
-            </div>
-            <div class="follow-btn">
-                <button type="button" class="f-btn">Follow</button>
-            </div>
-        </div>
-        <button type="text" class="load-more">Load more</button>
+        </main>
     </section>
+    <my-footer></my-footer>
+
+    <script src="accountjs.js"></script>
 </body>
 </html>
