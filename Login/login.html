@@ -6,35 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="loginstyle.css">
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="../main.js"></script>
 </head>
 <body>
-    <section>
-        <nav class="menu">
-            <div class="logo">
-                <a href="index.html">TwitterPilot</a>
-            </div>
-            
-                <ul class="navlinks">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="#">Documentation</a></li>
-                </ul>
-        </nav>
-    </section>
+    <my-header></my-header>
 
     <section class="login-section">
         <div class="login-form">
             <form action="#" method="GET">
                 <h2>Sign Into Your Twitter</h2>
-                <form action="#" method="GET">
                 <input type="text" id="username" placeholder="Username" required>
                 <input type="password" id="password" placeholder="Password" required>
                 <div class="checkbox">
-                    <input type="checkbox" value="agreed" class="checkbox" required>
+                    <input type="checkbox" id="agreed" name="agreed" value="agreed" required>
                     <label for="agreed">I agree that TwitterPilot should access my Twitter Account?</label>
                 </div>
-                <button type="submit" value="Submit" class="login-btn"><a href="../Account/account.html">Login</a></button>
+                <button type="submit" class="login-btn"><a href="../Account/account.html">Login</a></button>
             </form>
         </div>
     </section>
+    
+
+    <my-footer></my-footer>
+
+    <script src="loginjs.js"></script>
 </body>
 </html>

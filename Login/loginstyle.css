@@ -101,6 +101,5 @@ label {
 }
 .checkbox {
     display: flex;
-    padding: 5px;
-    margin: 5px;
+    align-items: center;
 }
